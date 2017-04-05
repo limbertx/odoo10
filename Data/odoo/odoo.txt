@@ -1,0 +1,36 @@
+user : openpg
+pass : openpgpwd
+
+instalar y dar siguiente hasta que salga el localchost
+
+http://localhost:8069/web/database/selector
+
+nombre de db : pruebadb
+email :	limbertx@hotmail.com
+pass  : limbertx@hotmail.com
+
+
+modulos instalados
+- CRM
+- contabilidad y finanzas
+- ventas
+- gestion de compras
+- inventario
+
+
+http://localhost:8069/web/login
+
+===============================================
+se creo nueva base de datos para la empresa
+con :
+	usr : limbertx@hotmail.com
+	pas : limbertx@hotmail.com
+	bd	: dbempresa
+
+ubicacion de los modulos
+	C:\Program Files (x86)\Odoo 10.0\server\odoo\addons
+__________________________________________________________________
+La ultima base de datos es dbjuego
+	usr : admin
+	pas : admin
+__________________________________________________________________

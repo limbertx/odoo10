@@ -1,0 +1,32 @@
+========HELP ODOO 10 ==================
+
+>>>.- CREACION DE MODULO
+1.- loguear y activar modo desarrollador
+2.- abrir cmd e ir hasta c..../odoo 10/server
+3.- una vez alli teclear el siguiente comando para crear el modulo
+	# odoo-bin scaffold nombremodulo odoo/addons
+
+4.- con esto se crea todo el esqueleto del modulo
+    ir a configuracion => actualizar lista de aplicaciones
+5.- buscar el modulo con el nombre que se lo creo e instalarlo
+
+===========================================================================
+>>>>.- Cómo configurar una carpeta distinta para los módulos - en Odoo 10.0 
+===========================================================================
+1.- creamos la carpeta donde tendremos todos nuestros modulos externos
+	ej: F:\odoo10\addons
+
+2.-	Ademas ir a modificar el archivo de configuracion que esta ubicado en:
+		$ C:\Program Files (x86)\Odoo 10.0\server\odoo.conf
+3.- ahora modificamos el archivo en la linea "addons_path"
+	donde colocamos una como "," y enseguida copiamos la ubicacion donde estaran
+	ubicados nuestros modulos externos::
+	addons_path = C:\Program Files (x86)\Odoo 10.0\server\odoo\addons,F:\odoo10\addons
+4.- Reiniciar el servidor odoo10 que esta en servicios en windows
+
+
+
+instalacion de modulo externo
+https://www.youtube.com/watch?v=4lqvXaLLzU4
+https://groups.google.com/forum/#!topic/openerp_peru/ipgt539DTV8
+https://realpython.com/blog/python/api-integration-in-python/
