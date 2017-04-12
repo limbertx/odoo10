@@ -2,8 +2,8 @@
 
 from odoo import models, fields, api
 
-# class nombremodulo(models.Model):
-#     _name = 'nombremodulo.nombremodulo'
+# class convalidaciones(models.Model):
+#     _name = 'convalidaciones.convalidaciones'
 
 #     name = fields.Char()
 #     value = fields.Integer()

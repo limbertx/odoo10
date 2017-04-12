@@ -24,9 +24,11 @@
 	addons_path = C:\Program Files (x86)\Odoo 10.0\server\odoo\addons,F:\odoo10\addons
 4.- Reiniciar el servidor odoo10 que esta en servicios en windows
 
-
+==============================================================================
+==============================================================================
 
 instalacion de modulo externo
-https://www.youtube.com/watch?v=4lqvXaLLzU4
-https://groups.google.com/forum/#!topic/openerp_peru/ipgt539DTV8
+https://www.odoo.com/apps/modules/10.0/odoo_web_login/
+https://www.odoo.com/apps/modules/10.0/account_parent/
+
 https://realpython.com/blog/python/api-integration-in-python/

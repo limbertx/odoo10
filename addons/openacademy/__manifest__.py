@@ -1,16 +1,15 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "nombremodulo Yalusqui Solutions en F",
+    'name': "openacademy",
 
     'summary': """
-        Short (1 phrase/line) summary of the module's purpose, used as
-        subtitle on modules listing or apps.openerp.com""",
+        Desarrollo de modulos y paquetes en python odoo""",
 
     'description': """
-        sin unn proposito general
+        Es un modulo creado para las pruebas
     """,
 
-    'author': "Yalusqui Solutions",
+    'author': "yalusqui",
     'website': "http://www.yalusqui.com",
 
     # Categories can be used to filter modules in modules listing
@@ -25,7 +24,7 @@
     # always loaded
     'data': [
         # 'security/ir.model.access.csv',
-        'views/views.xml',
+        'views/openacademy.xml',
         'views/templates.xml',
     ],
     # only loaded in demonstration mode

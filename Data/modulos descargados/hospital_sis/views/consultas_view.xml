@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	 <data>
+        <!-- Creamos la vista de formulario -->
+	 	<record id="view_mfh_consultas_form_id" model="ir.ui.view">
+	 		<field name="name">sis_consultas_form</field>
+            <!-- Nombre del modelo -->
+	 		<field name="model">sis.consultas</field>
+            <field name="type">form</field>
+            	<field name="arch" type="xml">
+                   <form string="consultas">
+                    <!-- Usamos group para mostrar los label de modelo -->
+                       <group>
+                           <field name="nombre"/>
+                           <field name="partner_id"/>
+                           <field name="especialidades"/>
+                       </group>
+                   </form>                             	
+                </field>
+	    </record>
+
+        <!-- Creamos la vista de Arbol -->
+        <record id="view_sis_consultas_tree_id" model="ir.ui.view">
+            <field name="name">sis_consultas_tree</field>
+            <!-- Nombre del modelo -->
+            <field name="model">sis.consultas</field>
+            <field name="type">tree</field>
+                <field name="arch" type="xml">
+                   <tree string="consultas">
+                           <field name="nombre"/>
+                           <field name="partner_id"/>
+                           <field name="especialidades"/>
+                   </tree>                              
+                </field>
+        </record>
+
+
+        <!--  Definimos los eventos -->
+        <record id="action_sis_consultas" model="ir.actions.act_window">
+            <field name="name">sis consultas</field>
+            <field name="res_model">sis.consultas</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!--  Declaramos los menu -->
+        <menuitem id="menu_sis_consultas" name="Consultas" sequence="10" parent="menu_sis"/>
+        <menuitem id="menu_sis_consultas_hospital" name="Consultas" sequence="10" parent="menu_sis_consultas" action="action_sis_consultas"/>
+
+     </data>
+</openerp>

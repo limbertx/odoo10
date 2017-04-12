@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	 <data>
+        <!-- Creamos la vista de formulario -->
+	 	<record id="view_mfh_hospital_form_id" model="ir.ui.view">
+	 		<field name="name">sis_hospital_form</field>
+            <!-- Nombre del modelo -->
+	 		<field name="model">sis.hospital</field>
+            <field name="type">form</field>
+            	<field name="arch" type="xml">
+                   <form string="hospital">
+                    <!-- Usamos group para mostrar los label de modelo -->
+                       <group>
+                           <field name="nombre"/>
+                           <field name="country_id"/>
+                       </group>
+                   </form>                             	
+                </field>
+	    </record>
+
+        <!-- Creamos la vista de Arbol -->
+        <record id="view_sis_hospital_tree_id" model="ir.ui.view">
+            <field name="name">sis_hospital_tree</field>
+            <!-- Nombre del modelo -->
+            <field name="model">sis.hospital</field>
+            <field name="type">tree</field>
+                <field name="arch" type="xml">
+                   <tree string="hospital">
+                           <field name="nombre"/>
+                           <field name="country_id"/>
+                   </tree>                              
+                </field>
+        </record>
+
+
+        <!--  Definimos los eventos -->
+        <record id="action_sis_hospital" model="ir.actions.act_window">
+            <field name="name">sis hospital</field>
+            <field name="res_model">sis.hospital</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!--  Declaramos los menu -->
+        <menuitem id="menu_sis" name="Hospital" sequence="10"/>
+        <menuitem id="menu_sis_mantenedor" name="Mantenedor" sequence="10" parent="menu_sis"/>
+        <menuitem id="menu_sis_mantenedor_hospital" name="Hospital" sequence="10" parent="menu_sis_mantenedor" action="action_sis_hospital"/>
+
+     </data>
+</openerp>
