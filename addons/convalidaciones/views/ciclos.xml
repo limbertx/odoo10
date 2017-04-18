@@ -1,0 +1,58 @@
+<odoo>
+  <data>
+
+    <!-- formulario de la vista -->
+    <record model="ir.ui.view" id="convalidaciones.list_ciclos_form">
+      <field name="name">convalidaciones.ciclo.form</field>
+      <field name="model">convalidaciones.ciclo</field>
+      <field name="arch" type="xml">
+        <form string="Ventana del ciclo">
+          <sheet>
+            <field name="nombre"/>
+            <field name="descripcion"/>
+            <field name="modulo_ids"/>
+          </sheet>          
+        </form>
+      </field>
+    </record>
+
+    <!-- Vista lista de ciclos  -->
+
+    <record model="ir.ui.view" id="convalidaciones.list_ciclos_tree">
+      <field name="name">convalidaciones.ciclos.tree</field>
+      <field name="model">convalidaciones.ciclo</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="nombre"/>
+          <field name="descripcion"/>
+          <field name="modulo_ids">
+            <tree string="Modulos en los que se imparten este ciclo">
+              <field name="nombre"/>
+              <field name="descripcion"/>
+            </tree>        
+          </field>
+        </tree>
+      </field>
+    </record>
+
+    <!-- ventana que se muestra para el modelo -->
+    
+    <record model="ir.actions.act_window" id="convalidaciones.action_window_ciclo">
+      <field name="name">Ventana de Ciclos</field>
+      <field name="res_model">convalidaciones.ciclo</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    
+    
+    <!-- menu categories 
+    aqui puedes crear todos los menus que quieras
+    -->
+    <menuitem name="Ciclos" id="convalidaciones.menu_ciclos" parent="convalidaciones.menu_root"/>
+    
+    <!-- acciones -->
+  
+    <menuitem name="Listado" id="convalidaciones.ciclos_list" parent="convalidaciones.menu_ciclos"
+              action="convalidaciones.action_window_ciclo"/>
+  
+  </data>
+</odoo>

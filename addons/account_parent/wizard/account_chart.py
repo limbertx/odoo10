@@ -15,13 +15,13 @@ class OpenAccountChart(models.TransientModel):
     For Chart of Accounts
     """
     _name = "account.open.chart"
-    _description = "Account Open chart"
+    _description = "Abrir grafico de cuentas"
     
     company_id = fields.Many2one('res.company', string='Company', readonly=True, default=lambda self: self.env.user.company_id)
-    date_from = fields.Date(string='Start Date')
-    date_to = fields.Date(string='End Date')
-    target_move = fields.Selection([('posted', 'All Posted Entries'),
-                                    ('all', 'All Entries'),
+    date_from = fields.Date(string='Fecha inicial')
+    date_to = fields.Date(string='Fecha final')
+    target_move = fields.Selection([('posted', 'Todas las entradas publicadas'),
+                                    ('all', 'Todas las entradas'),
                                     ], string='Target Moves', required=True, default='posted')
     parent_needed = fields.Boolean('Parent Grouping Needed')
     

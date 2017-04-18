@@ -12,7 +12,7 @@ from odoo import api, fields, models, _
 class AccountAccountTemplate(models.Model):
     _inherit = "account.account.template"
     
-    parent_id = fields.Many2one('account.account.template','Parent Account',ondelete="set null")
+    parent_id = fields.Many2one('account.account.template','Cuenta padre',ondelete="set null")
     property_temp_related_account_id = fields.Many2one('account.account','Related Account', company_dependent=True,)
     
     def update_template_property_field(self,account_id, company):

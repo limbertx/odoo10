@@ -1,0 +1,82 @@
+<odoo>
+  <data>
+
+    <!-- formulario de la vista -->
+    <record model="ir.ui.view" id="convalidaciones.list_alumnos_form">
+      <field name="name">convalidaciones.alumno.form</field>
+      <field name="model">convalidaciones.alumno</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <div class="oe_title">
+              <label for="nombre" 
+                      class="oe_edit_only" 
+                      string="Nombre y apellidos">Nombre y apellidos</label>
+              <h1>
+                  <field name="nombre"/>
+              </h1>
+            </div>
+
+            <separator string="Datos Personales" colspan="2"/>
+        
+            <group colspan="2" col="2">
+              <field name="localidad"/>
+              <field name="provincia"/>
+              <field name="email"/>
+              <field name="pais_id"/>
+              <field name="edad"/>
+            </group>
+            <field name="convalidacion_ids"/>
+          </sheet>          
+        </form>
+      </field>
+    </record>
+
+    <!-- Vista lista de alumnos  -->
+
+    <record model="ir.ui.view" id="convalidaciones.list_alumnos_tree">
+      <field name="name">convalidaciones.alumno.tree</field>
+      <field name="model">convalidaciones.alumno</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="nombre"/>
+          <field name="localidad"/>
+          <field name="provincia"/>
+          <field name="email"/>
+          <field name="pais_id"></field>
+          <field name="edad"/>
+          <field name="convalidacion_ids">
+            <tree string="Convalidaciones del Alumno">
+              <field name="modulo_id"/>
+              <field name="alumno_id"/>
+              <field name="fecha_convalidacion"/>
+            </tree>
+          </field>
+        </tree>
+      </field>
+    </record>
+
+    <!-- ventana que se muestra para el modelo -->
+    
+    <record model="ir.actions.act_window" id="convalidaciones.action_window">
+      <field name="name">Ventana de alumnos</field>
+      <field name="res_model">convalidaciones.alumno</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    
+    <!-- menu item de arriba -->
+    <menuitem name="Convalidaciones" id="convalidaciones.menu_root"/>
+    
+    <!-- menu categories 
+
+    aqui puedes crear todos los menus que quieras
+    -->
+    <menuitem name="Alumnos" id="convalidaciones.menu_alumnos" parent="convalidaciones.menu_root"/>
+    
+    <!-- acciones -->
+  
+    <menuitem name="Listado" id="convalidaciones.alumnos_list" parent="convalidaciones.menu_alumnos"
+              action="convalidaciones.action_window"/>
+  
+  </data>
+</odoo>

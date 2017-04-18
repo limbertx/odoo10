@@ -1,0 +1,52 @@
+<odoo>
+  <data>
+    <!-- Vista la vista tree (que es el grid)  -->
+    <record model="ir.ui.view" id="convalidaciones.list_convalidaciones_tree">
+      <field name="name">convalidaciones.convalidaciones.tree</field>
+      <field name="model">convalidaciones.convalidacion</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="fecha_convalidacion"/>
+          <field name="modulo_id"/>
+          <field name="alumno_id"/>
+        </tree>
+      </field>
+    </record>
+    
+    <!-- Vista la vista del formulario -->
+    <record model="ir.ui.view" id="convalidaciones.list_convalidaciones_form">
+      <field name="name">convalidaciones.convalidaciones.form</field>
+      <field name="model">convalidaciones.convalidacion</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <field name="fecha_convalidacion"/>
+            <field name="modulo_id"/>
+            <field name="alumno_id"/>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!-- ventana que se muestra para el modelo -->
+    
+    <record model="ir.actions.act_window" id="convalidaciones.action_window_convalidaciones">
+      <field name="name">Ventana de Convalidaciones</field>
+      <field name="res_model">convalidaciones.convalidacion</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    
+    
+    <!-- menu categories 
+
+    aqui puedes crear todos los menus que quieras
+    -->
+    <menuitem name="Convalidaciones" id="convalidaciones.menu_convalidaciones" parent="convalidaciones.menu_root"/>
+    
+    <!-- acciones -->
+  
+    <menuitem name="Listado" id="convalidaciones.convalidaciones_list" parent="convalidaciones.menu_convalidaciones"
+              action="convalidaciones.action_window_convalidaciones"/>
+  
+  </data>
+</odoo>

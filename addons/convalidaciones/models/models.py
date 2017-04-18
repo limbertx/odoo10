@@ -2,14 +2,15 @@
 
 from odoo import models, fields, api
 
-# class convalidaciones(models.Model):
-#     _name = 'convalidaciones.convalidaciones'
+class Alumno(models.Model):
+	_name = 'convalidaciones.alumno'
+	_rec_name = 'nombre'
 
-#     name = fields.Char()
-#     value = fields.Integer()
-#     value2 = fields.Float(compute="_value_pc", store=True)
-#     description = fields.Text()
-#
-#     @api.depends('value')
-#     def _value_pc(self):
-#         self.value2 = float(self.value) / 100
+	nombre = fields.Char(string="Nombre y apellidos")
+	edad = fields.Integer(string="Edad")
+	localidad = fields.Char(string="Localidad")
+	provincia = fields.Char(string="Provincia")
+	email = fields.Char(string="Correo Electronico")
+	convalidacion_ids = fields.One2many(comodel_name="convalidaciones.convalidacion", inverse_name="alumno_id", string="Convalidaciones del Alumno")
+	# esto es para usar una tabla del modulo odoo
+	pais_id = fields.Many2one('res.country', string="Pais de origen")

@@ -1,16 +1,16 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "openacademy",
+    'name': "finicio",
 
     'summary': """
-        Desarrollo de modulos y paquetes en python odoo""",
+        Modulo creado segun falcon""",
 
     'description': """
-        Es un modulo creado para las pruebas
+        Long description of module's purpose
     """,
 
-    'author': "yalusqui",
-    'website': "http://www.yalusqui.com",
+    'author': "youtube.com",
+    'website': "https://www.youtube.com/channel/UCM93kgnjXu393jgKjjSkUjQ",
 
     # Categories can be used to filter modules in modules listing
     # Check https://github.com/odoo/odoo/blob/master/odoo/addons/base/module/module_data.xml
@@ -24,9 +24,8 @@
     # always loaded
     'data': [
         # 'security/ir.model.access.csv',
-        'views/openacademy.xml',
+        'views/views.xml',
         'views/templates.xml',
-        #esto se esta adicionando para el reporte
     ],
     # only loaded in demonstration mode
     'demo': [

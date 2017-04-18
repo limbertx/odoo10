@@ -78,7 +78,7 @@ class AccountAccount(models.Model):
     balance = fields.Float(compute="compute_values", digits=dp.get_precision('Account'), string='Balance')
     credit = fields.Float(compute="compute_values",digits=dp.get_precision('Account'), string='Credit')
     debit = fields.Float(compute="compute_values",digits=dp.get_precision('Account'), string='Debit')
-    parent_id = fields.Many2one('account.account','Parent Account',ondelete="set null")
+    parent_id = fields.Many2one('account.account','Cuenta padre',ondelete="set null")
     child_ids = fields.One2many('account.account','parent_id', 'Child Accounts')
     parent_left = fields.Integer('Left Parent', index=1)
     parent_right = fields.Integer('Right Parent', index=1)
@@ -103,7 +103,7 @@ class AccountJournal(models.Model):
     @api.model
     def _prepare_liquidity_account(self, name, company, currency_id, type):
         res = super(AccountJournal, self)._prepare_liquidity_account(name, company, currency_id, type)
-        # Seek the next available number for the account code
+        # Busque el siguiente número disponible para el código de cuenta
         code_digits = company.accounts_code_digits or 0
         if type == 'bank':
             account_code_prefix = company.bank_account_code_prefix or ''

@@ -1,0 +1,65 @@
+<odoo>
+  <data>
+    <!-- Vista lista de modulos  -->
+    
+    <record model="ir.ui.view" id="convalidaciones.list_modulos_tree">
+      <field name="name">Listado de modulos</field>
+      <field name="model">convalidaciones.modulo</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="nombre"/>
+          <field name="descripcion"/>
+          <field name="ciclo_ids">
+            <tree string="Ciclos en los que se imparte este modulo">
+              <field name="nombre"/>
+              <field name="descripcion"/>
+            </tree>
+          </field>
+        </tree>
+      </field>
+    </record>
+
+    <!-- vista de formulario -->
+    <record model="ir.ui.view" id="convalidaciones.list_modulos_form">
+      <field name="name">Datos de modulo</field>
+      <field name="model">convalidaciones.modulo</field>
+      <field name="arch" type="xml">
+        <form string="Ventana de Modulo">
+          <sheet>
+            <field name="nombre"/>
+            <field name="descripcion"/>
+            <field name="ciclo_ids"/>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!-- ventana que se muestra para el modelo -->
+    
+    <record model="ir.actions.act_window" id="convalidaciones.action_window_modulo">
+      <field name="name">Ventana de Modulos</field>
+      <field name="res_model">convalidaciones.modulo</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    
+    
+    <!-- menu item de arriba 
+
+      como ya existe creado en la vista alumno , no se lo crea aqui
+
+    -->
+
+    
+    <!-- menu categories 
+
+    aqui puedes crear todos los menus que quieras
+    -->
+    <menuitem name="Modulos" id="convalidaciones.menu_modulos" parent="convalidaciones.menu_root"/>
+    
+    <!-- acciones -->
+  
+    <menuitem name="Listado" id="convalidaciones.modulos_list" parent="convalidaciones.menu_modulos"
+              action="convalidaciones.action_window_modulo"/>
+  
+  </data>
+</odoo>
