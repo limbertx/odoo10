@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="account_report_libro_diario_view" model="ir.ui.view">
+        <field name="name">Libro Diario</field>
+        <field name="model">report_custom.account_report_libro_diario</field>
+        <field name="inherit_id" ref="account.account_report_print_journal_view"/>
+        <field name="arch" type="xml">
+        <data>
+        <xpath expr="//field[@name='target_move']" position="after">
+            <field name="amount_currency" groups="base.group_multi_currency"/>
+            <field name="sort_selection" widget="radio"/>
+            <newline/>
+        </xpath>
+        <!-- esto se modifico -->
+<!--         <xpath expr="//field[@name='journal_ids']" position="attributes">
+            <attribute name="domain">[('type', 'in', ('sale', 'purchase'))]</attribute>
+        </xpath> -->
+        </data>
+        </field>
+    </record>
+</odoo>

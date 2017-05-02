@@ -1,0 +1,32 @@
+esto es antes de la presentacion
+
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+    <!-- formulario de cuenta contable sin jerarquia -->
+	<record id="view_account_withparent_form" model="ir.ui.view">
+        <field name="name">account.account.form</field>
+        <field name="model">account.account</field>
+        <field name="inherit_id" ref="account.view_account_form"/>
+        <field name="arch" type="xml">
+        	<field name="code" position="after">
+        		<field name="parent_id" domain="[('internal_type','=','view')]" groups="account_parent.group_coas_user" 
+        			context="{'show_parent_account':True}" />
+        	</field>
+            <!-- aqui se esta ocultando el campo type -->
+            <field name="tag_ids" position="replace">
+                <field name="tag_ids" attrs="{'invisible' : True }"/>
+            </field>
+        </field>
+    </record>
+    <!-- oculta el tipo de cuenta -->
+    <record id="view_account_list_withparent_tree" model="ir.ui.view">
+            <field name="name">account.account.list</field>
+            <field name="model">account.account</field>
+            <field name="inherit_id" ref="account.view_account_list"></field>
+            <field name="arch" type="xml">
+                <field name="user_type_id" position="replace" attrs="{'invisible' : True }"/>
+            </field>
+    </record>
+</data>
+</odoo>

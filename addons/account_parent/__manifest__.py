@@ -1,11 +1,4 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    ODOO, Open Source Management Solution
-#    Copyright (C) 2016 Steigend IT Solutions
-#    For more details, check COPYRIGHT and LICENSE files
-#
-##############################################################################
 {
     'name': "Parent Account",
     'summary': """
@@ -19,11 +12,10 @@ This module will be very useful for those who are still using v7/v8 because of t
         * Shows chart of account based on the date and target moves we have selected
     - Need to set the group show chart of account structure to view the chart of account heirarchy.
     
-    Contact us for any need of customisation or chart of account migration from v7/v8 - v9/v10
     """,
 
-    'author': 'Steigend IT Solutions',
-    'website': 'http://www.steigendit.com',
+    'author': '',
+    'website': 'http://www.google.com',
     'category': 'Accounting &amp; Finance',
     'version': '1.2.1',
     'depends': ['account'],

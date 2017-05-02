@@ -24,7 +24,7 @@
         </record>
 
         <record id="action_account_chart" model="ir.actions.act_window">
-            <field name="name">Jerarquía del Cuadro de Cuentas</field>
+            <field name="name">Grafico de jerarquia de cuentas</field>
             <field name="res_model">account.open.chart</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
@@ -35,5 +35,9 @@
         <menuitem icon="STOCK_INDENT" action="action_account_chart"
             id="menu_action_account_chart"
             parent="account.menu_finance_entries" sequence="21" groups="group_coas_user" />
+            
+        
+
+
     </data>
 </odoo>
