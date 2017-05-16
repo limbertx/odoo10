@@ -1,0 +1,4 @@
+ip 	: 186.121.252.150
+port 	: 22
+usr 	: odoo
+pas 	: odoo
