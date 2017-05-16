@@ -1,21 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="account_report_libro_diario_view" model="ir.ui.view">
-        <field name="name">Libro Diario</field>
+
+    <record id="account_report_print_journal_total_view" model="ir.ui.view">
+        <field name="name">Libro diario total</field>
         <field name="model">report_custom.account_report_libro_diario</field>
-        <field name="inherit_id" ref="account.account_report_print_journal_view"/>
+        <field name="inherit_id" ref="account.account_common_report_view"/>
         <field name="arch" type="xml">
         <data>
-        <xpath expr="//field[@name='target_move']" position="after">
-            <field name="amount_currency" groups="base.group_multi_currency"/>
-            <field name="sort_selection" widget="radio"/>
-            <newline/>
-        </xpath>
-        <!-- esto se modifico -->
-<!--         <xpath expr="//field[@name='journal_ids']" position="attributes">
-            <attribute name="domain">[('type', 'in', ('sale', 'purchase'))]</attribute>
-        </xpath> -->
+            <xpath expr="//field[@name='target_move']" position="after">
+                <field name="amount_currency" groups="base.group_multi_currency"/>
+                <field name="sort_selection" widget="radio"/>
+                <newline/>
+            </xpath>
         </data>
         </field>
     </record>
+
+    <record id="action_account_print_journal_total_menu" model="ir.actions.act_window">
+        <field name="name">Libro diario total</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">report_custom.account_report_libro_diario</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="account_report_print_journal_total_view"/>
+        <field name="target">new</field>
+    </record>
+    
+    <!-- adicionamos al menu -->
+    <menuitem   
+        name="Libro diario de todo" 
+        id="report_custom.Account_report_libro_diario"
+        parent="account.menu_finance_legal_statement"
+        groups="account.group_account_manager,account.group_account_user"
+        action="action_account_print_journal_total_menu"/>
+
 </odoo>
