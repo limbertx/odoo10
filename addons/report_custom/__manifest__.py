@@ -23,9 +23,12 @@
 
     # always loaded
     'data': [
-        # 'security/ir.model.access.csv',        
-        'views/account_report_libro_diario.xml', # vista de libro diario
-        'views/account_common_report_view.xml', 
-        'views/account_report_libroMay_view.xml', # vista de libro mayor
+        # 'security/ir.model.access.csv',
+        #'views/account_report_libro_diario.xml', # vista de libro diario heredado
+        #'views/account_common_report_view.xml',
+        # plan contable
+        #'views/accountReportJerarquia_form.xml',
+        #'views/accountReportJerarquia_view.xml',
+        "views/formapago_view.xml"
     ],
 }

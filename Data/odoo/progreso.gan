@@ -1,13 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?><project name="Untitled Gantt Project" company="" webLink="http://" view-date="2017-04-13" view-index="0" gantt-divider-location="335" resource-divider-location="300" version="2.8.4" locale="es">
+<?xml version="1.0" encoding="UTF-8"?><project name="Untitled Gantt Project" company="" webLink="http://" view-date="2017-04-02" view-index="0" gantt-divider-location="473" resource-divider-location="300" version="2.8.4" locale="es">
     <description/>
     <view zooming-state="default:2" id="gantt-chart">
-        <field id="tpd3" name="Nombre" width="189" order="0"/>
-        <field id="tpd4" name="Fecha de inicio" width="75" order="1"/>
-        <field id="tpd5" name="Fecha de fin" width="67" order="2"/>
-        <option id="taskLabelUp" value="taskDates"/>
-        <option id="taskLabelDown" value="length"/>
-        <option id="taskLabelLeft" value=""/>
-        <option id="taskLabelRight" value=""/>
+        <field id="tpd3" name="Nombre" width="235" order="0"/>
+        <field id="tpd4" name="Fecha de inicio" width="121" order="1"/>
+        <field id="tpd5" name="Fecha de fin" width="113" order="2"/>
+        <option id="taskLabelUp" value=""/>
+        <option id="taskLabelDown" value=""/>
+        <option id="taskLabelLeft" value="length"/>
         <timeline><![CDATA[0]]></timeline>
         <option id="color.recent"><![CDATA[#ff0000 #0000cc #0000ff #ffff00 #00cc00 #990099 #00cccc #00cc33]]></option>
     </view>
@@ -45,22 +44,22 @@
             <taskproperty id="tpd8" name="coordinator" type="default" valuetype="text"/>
             <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
         </taskproperties>
-        <task id="0" name="Adapt. Cuenta Contable" color="#ff0000" meeting="false" start="2017-04-03" duration="3" complete="0" expand="true">
+        <task id="0" name="Adapt. Cuenta Contable" color="#ff0000" meeting="false" start="2017-04-03" duration="3" complete="100" expand="true">
             <depend id="1" type="2" difference="0" hardness="Strong"/>
         </task>
-        <task id="1" name="Adapt. Asiento Contable" color="#00cc33" meeting="false" start="2017-04-06" duration="2" complete="0" expand="true">
+        <task id="1" name="Adapt. Asiento Contable" color="#00cc33" meeting="false" start="2017-04-06" duration="2" complete="100" expand="true">
             <depend id="2" type="2" difference="0" hardness="Strong"/>
         </task>
-        <task id="2" name="R. Libro diario" color="#0000ff" meeting="false" start="2017-04-10" duration="3" complete="0" expand="true">
+        <task id="2" name="R. Libro diario" color="#0000ff" meeting="false" start="2017-04-10" duration="3" complete="100" expand="true">
             <depend id="4" type="2" difference="0" hardness="Strong"/>
         </task>
-        <task id="4" name="R. Libro mayor" color="#8cb6ce" meeting="false" start="2017-04-13" duration="2" complete="0" expand="true">
+        <task id="4" name="R. Libro mayor" color="#8cb6ce" meeting="false" start="2017-04-13" duration="2" complete="100" expand="true">
             <depend id="5" type="2" difference="0" hardness="Strong"/>
         </task>
         <task id="5" name="Integracion al modulos" color="#ffff00" meeting="false" start="2017-04-18" duration="4" complete="0" expand="true">
             <depend id="6" type="2" difference="0" hardness="Strong"/>
         </task>
-        <task id="6" name="R. Balance de comp. S. y S." color="#00cccc" meeting="false" start="2017-04-24" duration="2" complete="0" expand="true">
+        <task id="6" name="R. Balance de comp. S. y S." color="#00cccc" meeting="false" start="2017-04-24" duration="2" complete="100" expand="true">
             <depend id="7" type="2" difference="0" hardness="Strong"/>
         </task>
         <task id="7" name="R. Estado de resultado" color="#990099" meeting="false" start="2017-04-26" duration="2" complete="0" expand="true">

@@ -1,0 +1,46 @@
+<odoo>
+    <data>
+
+        <!-- formulario de forma de pago -->
+        <record model="ir.ui.view" id="report_custom.formapago_form">
+            <field name="name">report_custom.formapago_form</field>
+            <field name="model">report_custom.formapago</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group colspan="2" col="2">
+                            <field name="abrevi"/>
+                            <field name="descripcion"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- lista de formas de pago -->
+        <record model="ir.ui.view" id="report_custom.formapago_list">
+            <field name="name">report_custom.formapago.tree</field>
+            <field name="model">report_custom.formapago</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="abrevi"/>
+                    <field name="descripcion"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- ventana que se mostrara al hacer clic -->
+        <record model="ir.actions.act_window" id="report_custom.formapago_action_window">
+            <field name="name">Formas de pago</field>
+            <field name="res_model">report_custom.formapago</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem
+            name="Forma de pagos"
+            id="report_custom.formapago"
+            parent="account.menu_finance_entries"
+            groups="account.group_account_manager,account.group_account_user"
+            action="report_custom.formapago_action_window"/>
+    </data>
+</odoo>
