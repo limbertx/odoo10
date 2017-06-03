@@ -1,0 +1,51 @@
+<odoo>
+    <data>
+        <!-- formulario de configuracion de transaccion -->
+        <record model="ir.ui.view" id="report_custom.conftransaccion_form">
+            <field name="name">report_custom.conftransaccion_form</field>
+            <field name="model">report_custom.conftransaccion</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group colspan="2" col="2">
+                            <field name="diario_id"/>
+                            <field name="moneda_id"/>
+                            <field name="account_inv_id"/>
+                            <field name="estado" widget="selection" placeholder="Seleccione estado"/>
+                            <field name="partner_id"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- lista de formas de pago -->
+        <record model="ir.ui.view" id="report_custom.conftransaccion_list">
+            <field name="name">report_custom.conftransaccion.tree</field>
+            <field name="model">report_custom.conftransaccion</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="diario_id"/>
+                    <field name="moneda_id"/>
+                    <field name="account_inv_id"/>
+                    <field name="estado" widget="selection"/>
+                    <field name="partner_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- ventana que se mostrara al hacer clic -->
+        <record model="ir.actions.act_window" id="report_custom.conftransaccion_action_window">
+            <field name="name">Configuracion de transacciones</field>
+            <field name="res_model">report_custom.conftransaccion</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem
+            name="Confg. de transacciones"
+            id="report_custom.conftransaccion"
+            parent="account.menu_finance_entries"
+            groups="account.group_account_manager,account.group_account_user"
+            action="report_custom.conftransaccion_action_window"/>
+    </data>
+</odoo>

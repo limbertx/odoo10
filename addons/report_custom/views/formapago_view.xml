@@ -1,6 +1,5 @@
 <odoo>
     <data>
-
         <!-- formulario de forma de pago -->
         <record model="ir.ui.view" id="report_custom.formapago_form">
             <field name="name">report_custom.formapago_form</field>

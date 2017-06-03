@@ -1,0 +1,64 @@
+<odoo>
+    <data>
+        <!-- formulario de transaccion de pagos -->
+        <record model="ir.ui.view" id="report_custom.transaccionsorteo_form">
+            <field name="name">report_custom.transaccionsorteo_form</field>
+            <field name="model">report_custom.transaccionsorteo</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group col="2" colspan="2">
+                            <field name="fecha_cierre"/>
+                            <field name="venta_efect"/>
+                            <field name="comision"/>
+                            <field name="juego"/>
+                            <field name="sorteo"/>
+                            <field name="direct_dpto"/>
+                            <field name="fecha_sorteo"/>
+                            <field name="glosa"/>
+                            <field name="concepto"/>
+                            <field name="pais"/>
+                            <field name="departamento"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- lista de las transacciones del sorteo -->
+        <record model="ir.ui.view" id="report_custom.transaccionsorteo_list">
+            <field name="name">report_custom.transaccionsorteo.tree</field>
+            <field name="model">report_custom.transaccionsorteo</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="fecha_cierre"/>
+                    <field name="venta_efect"/>
+                    <field name="comision"/>
+                    <field name="juego"/>
+                    <field name="sorteo"/>
+                    <field name="direct_dpto"/>
+                    <field name="fecha_sorteo"/>
+                    <field name="glosa"/>
+                    <field name="concepto"/>
+                    <field name="pais"/>
+                    <field name="departamento"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- ventana donde se llama al formulario y el grid -->
+        <record model="ir.actions.act_window" id="report_custom.transaccionsorteo_action_window">
+            <field name="name">Transacciones de sorteo</field>
+            <field name="res_model">report_custom.transaccionsorteo</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem
+            name="Transacciones de sorteo"
+            id="report_custom.transaccionsorteo"
+            parent="account.menu_finance_entries"
+            groups="account.group_account_manager,account.group_account_user"
+            action="report_custom.transaccionsorteo_action_window"
+            />
+    </data>
+</odoo>
