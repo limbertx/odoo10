@@ -48,7 +48,7 @@ class TransaccionSorteo(models.Model):
                                             })
         if(idTransaccion >0):
             #generamos un comprobante contable
-            idComprobante = self._createComprobante()
+            idComprobante = 0 #self._createComprobante()
 
         return (str(idTransaccion))
     def _createComprobante(self):
@@ -76,7 +76,7 @@ class TransaccionSorteo(models.Model):
             "journal_id" : self._getConfigTransDiario(), # el es id del diario
             "currency_id" : False, # por defecto esta nulo
             "date_maturity" : self.fecha_cierre, # igual a la fecha del comprobante
-            "user_type_id" : 0, # Esto es user_type_id que esta en account.account
+            "user_type_id" : self._getTypeAccount(self._getConfigCuenta_inv()), # Esto es user_type_id que esta en account.account
             "partner_id" : 0,
             "blocked" : False,
             "analytic_account_id" : ,
@@ -125,3 +125,16 @@ class TransaccionSorteo(models.Model):
         conftrans1 = conconftrans.search([("estado", "=", "activo")], limit=1)
         print("id socio : " + conftrans1.partner_id)
         return conftrans1.partner_id
+
+    # devuelve el id de la cuenta inversa
+    def _getConfigCuenta_inv(self):
+        conftrans = self.env['report_custom.conftransaccion']
+        conftrans1 = conconftrans.search([("estado", "=", "activo")], limit=1)
+        print("id cuenta inversa : " + conftrans1.estado)
+        return conftrans1.account_inv_id
+
+    # devuelve el id del tipo de cuenta contable
+    def _getTypeAccount(self, account_id):
+        account = self.env["account.account"]
+        account1 = account.search(["id" , "=", account_id], limit=1)
+        print(" id type de cuenta" + account1.user_type_id)
