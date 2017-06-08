@@ -1,14 +1,14 @@
 <odoo>
     <data>
         <!-- formulario de forma de pago -->
-        <record model="ir.ui.view" id="report_custom.formapago_form">
-            <field name="name">report_custom.formapago_form</field>
-            <field name="model">report_custom.formapago</field>
+        <record model="ir.ui.view" id="report_custom.sorteo_form">
+            <field name="name">report_custom.sorteo_form</field>
+            <field name="model">report_custom.sorteo</field>
             <field name="arch" type="xml">
                 <form>
                     <sheet>
                         <group colspan="2" col="2">
-                            <field name="abrevi"/>
+                            <field name="idsorteo"/>
                             <field name="descripcion"/>
                         </group>
                     </sheet>
@@ -17,21 +17,21 @@
         </record>
 
         <!-- lista de formas de pago -->
-        <record model="ir.ui.view" id="report_custom.formapago_list">
-            <field name="name">report_custom.formapago.tree</field>
-            <field name="model">report_custom.formapago</field>
+        <record model="ir.ui.view" id="report_custom.sorteo_list">
+            <field name="name">report_custom.sorteo.tree</field>
+            <field name="model">report_custom.sorteo</field>
             <field name="arch" type="xml">
                 <tree>
-                    <field name="abrevi"/>
+                    <field name="idsorteo"/>
                     <field name="descripcion"/>
                 </tree>
             </field>
         </record>
 
         <!-- ventana que se mostrara al hacer clic -->
-        <record model="ir.actions.act_window" id="report_custom.formapago_action_window">
-            <field name="name">Formas de pago</field>
-            <field name="res_model">report_custom.formapago</field>
+        <record model="ir.actions.act_window" id="report_custom.sorteo_action_window">
+            <field name="name">Sorteo</field>
+            <field name="res_model">report_custom.sorteo</field>
             <field name="view_mode">tree,form</field>
         </record>
     </data>

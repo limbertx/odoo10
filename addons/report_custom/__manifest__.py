@@ -29,8 +29,12 @@
         # plan contable
         #'views/accountReportJerarquia_form.xml',
         #'views/accountReportJerarquia_view.xml',
+        # vistas
         "views/formapago_view.xml",
         "views/transaccionsorteo_view.xml",
-        "views/conftransaccion_view.xml"
+        "views/juego_view.xml",
+        "views/sorteo_view.xml",
+        "views/conftransaccion_view.xml",
+        "views/menuModulo.xml"
     ],
 }

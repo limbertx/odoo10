@@ -4,3 +4,5 @@ from . import asientoContable
 from . import formaPago
 from . import transaccionSorteo
 from . import confTransaccion
+from . import juego
+from . import sorteo

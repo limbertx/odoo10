@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- El menu donde se ingresaran todos los nuevos formularios y configuraciones -->
+        <menuitem
+            name="Recursos y Config."
+            id="report_custom.menu_report_custom"
+            parent="account.menu_finance"
+            sequence="6"
+            />
+            <!-- menu de transacciones -->
+            <menuitem
+                name="Transacciones de sorteo"
+                id="report_custom.transaccionsorteo"
+                parent="report_custom.menu_report_custom"
+                groups="account.group_account_manager,account.group_account_user"
+                action="report_custom.transaccionsorteo_action_window"/>
+            <!-- menu de sorteos -->
+            <menuitem
+                name="Sorteos"
+                id="report_custom.sorteo"
+                parent="report_custom.menu_report_custom"
+                groups="account.group_account_manager,account.group_account_user"
+                action="report_custom.sorteo_action_window"/>
+            <!-- menu de juegos -->
+            <menuitem
+                name="Juegos"
+                id="report_custom.juego"
+                parent="report_custom.menu_report_custom"
+                groups="account.group_account_manager,account.group_account_user"
+                action="report_custom.juego_action_window"/>
+            <!-- menu de configuracion de transaccion -->
+            <menuitem
+                name="Confg. de transacciones"
+                id="report_custom.conftransaccion"
+                parent="report_custom.menu_report_custom"
+                groups="account.group_account_manager,account.group_account_user"
+                action="report_custom.conftransaccion_action_window"/>
+            <!-- menu de forma de pago  -->
+            <menuitem
+                name="Forma de pagos"
+                id="report_custom.formapago"
+                parent="report_custom.menu_report_custom"
+                groups="account.group_account_manager,account.group_account_user"
+                action="report_custom.formapago_action_window"/>
+
+    </data>
+</odoo>

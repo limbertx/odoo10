@@ -5,14 +5,19 @@
             <field name="name">report_custom.conftransaccion_form</field>
             <field name="model">report_custom.conftransaccion</field>
             <field name="arch" type="xml">
-                <form>
+                <form string="Crear Configuracion">
                     <sheet>
                         <group colspan="2" col="2">
                             <field name="diario_id"/>
                             <field name="moneda_id"/>
-                            <field name="account_inv_id"/>
                             <field name="estado" widget="selection" placeholder="Seleccione estado"/>
                             <field name="partner_id"/>
+                            <field colspan="4" name="det_ids">
+                                <tree string="Detalles" editable="bottom">
+                                    <field name="account_id"/>
+                                    <field name="porcentaje"/>
+                                </tree>
+                            </field>
                         </group>
                     </sheet>
                 </form>
@@ -27,7 +32,6 @@
                 <tree>
                     <field name="diario_id"/>
                     <field name="moneda_id"/>
-                    <field name="account_inv_id"/>
                     <field name="estado" widget="selection"/>
                     <field name="partner_id"/>
                 </tree>
@@ -40,12 +44,5 @@
             <field name="res_model">report_custom.conftransaccion</field>
             <field name="view_mode">tree,form</field>
         </record>
-
-        <menuitem
-            name="Confg. de transacciones"
-            id="report_custom.conftransaccion"
-            parent="account.menu_finance_entries"
-            groups="account.group_account_manager,account.group_account_user"
-            action="report_custom.conftransaccion_action_window"/>
     </data>
 </odoo>
