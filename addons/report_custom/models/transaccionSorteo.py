@@ -40,8 +40,8 @@ class TransaccionSorteo(models.Model):
                                             "fecha_cierre" : fecha_cierre,
                                             "venta_efect" : venta_efect,
                                             "comision" : comision,
-                                            "juego_id" : juego_id,
-                                            "sorteo_id" : sorteo_id,
+                                            "juego_id" : 1, # por ahora en defecto 1
+                                            "sorteo_id" : 1, # por ahora en defecto 1
                                             "direct_dpto" : direct_dpto,
                                             "fecha_sorteo" : fecha_sorteo,
                                             "glosa" : glosa,
