@@ -52,8 +52,8 @@ class TransaccionSorteo(models.Model):
         #if(idTransaccion >0):
             #generamos un comprobante contable
             #idComprobante = 0 #self._createComprobante()
-
-        return (str(idTransaccion))
+        print(idTransaccion.id)
+        return (str(idTransaccion.id))
     # def _createComprobante(self):
     #     comprobante = self.env["account.move"]
     #     dctMove = {
