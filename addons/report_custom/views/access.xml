@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="new_group_id" model="res.groups">
+          <field name="name">Mi nuevo Grupo</field>
+          <field name="category_id" ref="base.module_category_hidden"/>
+          <field name="users" eval="[(4, ref('base.user_root'))]"/>
+        </record>
+
+        <record id="account.menu_finance_receivables" model="ir.ui.menu">
+          <field name="groups_id" eval="[(3, [ref('new_group_id')] )]"/>
+        </record>
+    </data>
+</odoo>
