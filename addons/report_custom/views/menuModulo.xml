@@ -44,5 +44,15 @@
                 groups="account.group_account_manager,account.group_account_user"
                 action="report_custom.formapago_action_window"/>
 
+
+            <!-- menu de reportes -->
+
+            <!-- adicionamos al menu -->
+            <menuitem
+                name="**Lista de Cuentas**"
+                id="report_custom.reportjerarquia_form"
+                parent="account.menu_finance_legal_statement"
+                groups="account.group_account_manager,account.group_account_user"
+                action="action_jerarquia_menu"/>
     </data>
 </odoo>

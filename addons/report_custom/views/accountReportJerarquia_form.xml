@@ -23,14 +23,14 @@
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">report_custom.account.report.jerarquia.form</field>
         <field name="view_type">form</field>
-        <field name="view_mode">form</fippeld>
+        <field name="view_mode">form</field>
         <field name="view_id" ref="report_custom.jerarquia_form"/>
         <field name="target">new</field>
     </record>
 
     <!-- adicionamos al menu -->
     <menuitem
-        name="Lista de Cuentas"
+        name="**Lista de Cuentas**"
         id="report_custom.reportjerarquia_form"
         parent="account.menu_finance_legal_statement"
         groups="account.group_account_manager,account.group_account_user"

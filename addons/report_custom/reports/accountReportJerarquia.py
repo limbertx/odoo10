@@ -40,11 +40,12 @@ class AccountReportJerarquiaForm(models.TransientModel):
 
 class AccountReportJerarquia(models.TransientModel):
     _name = "report.report_custom.accountreportjerarquia"
-    _template = "report_custom.accountreportjerarquia"
+    _template = "report_accountj"
     def consulta():
         return ""
 
-    @api.model
+    @api.multi
     def render_html(self, docids, data=None):
+        _logger.info(':render_html: nESECTIO AYUDA LIMBERT')
         docargs = {}
         return self.env['report'].render('report_custom.accountreportjerarquia', docargs)

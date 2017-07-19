@@ -1,20 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <report
-        id="id_report_custom.accountreportjerarquia"
-        string="Plan Contable"
-        model="report_custom.accountreportjerarquia"
-        report_type="qweb-pdf"
-        name="report_custom.accountreportjerarquia"
-        file="report_custom.accountreportjerarquia"
-    />
+    <data>
+        <report
+            id="accountreportjerarquia"
+            string="Plan Contable"
+            model="report.report_custom.accountreportjerarquia"
+            report_type="qweb-pdf"
+            name="report_custom.report_accountj"
+            file="report_custom.report_accountj"
+        />
 
-    <template id="report_custom.accountreportjerarquia">
-        <div class="page">
-            <h2>Encabezado de reporte</h2>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
-        </div>
-    </template>
+        <template id="report_accountj">
+            <div class="page">
+                <h2>Encabezado de reporte</h2>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </p>
+            </div>
+        </template>
+    </data>
 </odoo>
