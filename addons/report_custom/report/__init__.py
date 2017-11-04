@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# aqui estan los modelos de los reportes
+# aqui estan la logica de los reportes
 from . import accountCommonReport
 from . import accountCommonJournalReport
 from . import account_report_libro_diario

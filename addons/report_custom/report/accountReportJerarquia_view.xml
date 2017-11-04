@@ -4,9 +4,9 @@
         <report
             id="action_accountReportJerarquia_view"
             string="Reporte de Plan Contable"
-            model="report.report_custom.account_report_jerarquia"
+            model="account.account"
             report_type="qweb-pdf"
-            name="report_custom.accountreportjerarquia"
+            name="report_custom.account_report_jerarquia_view"
             file="report_custom.accountreportjerarquia_template"
             menu="False"
         />

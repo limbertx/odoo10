@@ -49,10 +49,10 @@
 
             <!-- adicionamos al menu -->
             <menuitem
-                name="**Lista de Cuentas**"
-                id="report_custom.reportjerarquia_form"
+                name="**Plan de cuentas contables**"
+                id="report_custom.menu_wizard_jerarquia"
                 parent="account.menu_finance_legal_statement"
                 groups="account.group_account_manager,account.group_account_user"
-                action="action_jerarquia_menu"/>
+                action="action_wizard_jerarquia_menu"/>
     </data>
 </odoo>

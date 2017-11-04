@@ -28,8 +28,9 @@
         'views/account_report_libro_diario.xml', # vista de libro diario heredado
         'views/account_common_report_view.xml',
         # plan contable
-        'views/accountReportJerarquia_form.xml',
-        'views/accountReportJerarquia_view.xml',
+        'wizard/WizardAccountReportJerarquia.xml',
+        'report/accountReportJerarquia_view.xml',
+        'report/accountReportJerarquia_template.xml',
         # vistas
         "views/formapago_view.xml",
         "views/transaccionsorteo_view.xml",
@@ -37,5 +38,7 @@
         "views/sorteo_view.xml",
         "views/conftransaccion_view.xml",
         "views/menuModulo.xml"
+
+
     ],
 }

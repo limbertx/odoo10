@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- formulario de formulario de plan contable -->
+<odoo>                      
+    <record id="report_custom.wizard_jerarquia" model="ir.ui.view">
+        <field name="name">Plan contable</field>
+        <field name="model">report_custom.wizard_account_report_jerarquia</field>
+        <field name="arch" type="xml">
+            <form string="Opciones de reporte">
+                <sheet>
+                    <group col="4">
+                        <field name="fecha_ini"/>
+                        <field name="fecha_fin"/>
+                    </group>                    
+                </sheet>
+                <footer>
+                    <button name="action_report" string="Imprimir" type="object" default_focus="1" class="oe_highlight"/>
+                    <span class="or_cancel">or
+                        <button string="Cancelar" class="oe_link oe_inline" special="cancel" type="object" />
+                    </span> 
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_wizard_jerarquia_menu" model="ir.actions.act_window">
+        <field name="name">Plan contable Jerarquico</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">report_custom.wizard_account_report_jerarquia</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="report_custom.wizard_jerarquia"/>
+        <field name="target">new</field>
+    </record>
+</odoo>
