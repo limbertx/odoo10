@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from odoo import api, fields, models
+import json
 import logging
 _logger = logging.getLogger(__name__)
 """
@@ -17,13 +18,23 @@ class SistemaTrabajo(models.Model):
     account_against_id = fields.Many2one('account.account', string="Contra Cuenta", required = False)
     
     @api.model
-    def update_sistema_trabajo(self, sistema_trabajo, descripcion):
-    	env_sistem = self.env["report_custom.sistematrabajo"]
+    def update_sistema_trabajo(self, sistema_trabajos_json):
+        
+        json_acceptable_string = sistema_trabajos_json.replace("'", "\"")
+        detail_json = json.loads(json_acceptable_string)
 
-    	_logger.info(':CONT_ODOO: sistema_trabajo' + sistema_trabajo)
-    	# necesito actualizar
-    	res_sistema = env_sistem.search([("sistema_trabajo", "=", sistema_trabajo)])
-    	_logger.info(':CONT_ODOO: pase sistema encontrado : ' + str(len(res_sistema)))
+        uid = 0
+        for key, value in detail_json.items():
+            uid = self._insert_sistema(key, value)
+            _logger.info(':CONT_ODOO: key : ' + key + "> <value : " + value)
+        
+        return uid
+
+    def _insert_sistema(self, sistema_trabajo, descripcion):
+        
+        env_sistem = self.env["report_custom.sistematrabajo"]
+
+        res_sistema = env_sistem.search([("sistema_trabajo", "=", sistema_trabajo)])    	
 
 
     	if(len(res_sistema)>0):
