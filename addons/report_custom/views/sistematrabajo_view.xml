@@ -1,0 +1,43 @@
+<odoo>
+    <data>
+        <!-- formulario del sistema de trabajo -->
+        <record model="ir.ui.view" id="report_custom.sistematrabajo_form">
+            <field name="name">report_custom.sistematrabajo_form</field>
+            <field name="model">report_custom.sistematrabajo</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group colspan="2" col="2">
+                            <field name="sistema_trabajo"/>
+                            <field name="descripcion"/>
+                            <field name="account_id"/>
+                            <field name="account_against_id"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- lista de sistemas de trabajo -->
+        <record model="ir.ui.view" id="report_custom.sistematrabajo_list">
+            <field name="name">report_custom.sistematrabajo.tree</field>
+            <field name="model">report_custom.sistematrabajo</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="sistema_trabajo"/>
+                    <field name="descripcion"/>
+                    <field name="account_id"/>
+                    <field name="account_against_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- ventana que se mostrara al hacer clic -->
+        <record model="ir.actions.act_window" 
+            id="report_custom.sistematrabajo_action_window">
+            <field name="name">Sistema de Trabajo</field>
+            <field name="res_model">report_custom.sistematrabajo</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo>

@@ -24,21 +24,23 @@
     # always loaded
     'data': [
         #'security/ir.model.access.csv',
-        #'views/access.xml',
-        'views/account_report_libro_diario.xml', # vista de libro diario heredado
-        'views/account_common_report_view.xml',
+        #'views/access.xml',                
         # plan contable
         'wizard/WizardAccountReportJerarquia.xml',
         'report/accountReportJerarquia_view.xml',
         'report/accountReportJerarquia_template.xml',
+        'report/account_common_report_view.xml',
+        'report/account_report_libro_diario.xml', # vista de libro diario heredado
         # vistas
         "views/formapago_view.xml",
         "views/transaccionsorteo_view.xml",
         "views/juego_view.xml",
         "views/sorteo_view.xml",
         "views/conftransaccion_view.xml",
-        "views/menuModulo.xml"
-
+        "views/sistematrabajo_view.xml",
+        "views/transaccionComisionDet_view.xml",
+        "views/transaccionComision_view.xml",        
+        "views/menuModulo.xml",
 
     ],
 }

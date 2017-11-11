@@ -5,6 +5,7 @@ from odoo import fields, models, api, _
 
 _logger = logging.getLogger(__name__)
 
+
 class WizardAccountReportJerarquia(models.TransientModel):
     _name = "report_custom.wizard_account_report_jerarquia"
     _description = "Cuentas contables con jerarquia"

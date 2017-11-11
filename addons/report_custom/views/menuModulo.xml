@@ -44,6 +44,24 @@
                 groups="account.group_account_manager,account.group_account_user"
                 action="report_custom.formapago_action_window"/>
 
+            <menuitem
+                name="Sistema de trabajo"
+                id="report_custom.sistematrabajo"
+                parent="report_custom.menu_report_custom"
+                groups="account.group_account_manager,account.group_account_user"
+                action="report_custom.sistematrabajo_action_window"/>
+
+
+            <menuitem name="Detalle Comision por sorteo" 
+                id="report_custom.transaccion_comision_det"
+                parent="report_custom.menu_report_custom"
+                action="report_custom.action_window_transaccioncomisiondet"/>
+
+
+            <menuitem name="Transaccion de Comision" 
+                id="report_custom.transaccion_comision" 
+                parent="report_custom.menu_report_custom"
+                action="report_custom.transaccioncomision_action_window"/>
 
             <!-- menu de reportes -->
 
@@ -54,5 +72,8 @@
                 parent="account.menu_finance_legal_statement"
                 groups="account.group_account_manager,account.group_account_user"
                 action="action_wizard_jerarquia_menu"/>
+
+
+
     </data>
 </odoo>

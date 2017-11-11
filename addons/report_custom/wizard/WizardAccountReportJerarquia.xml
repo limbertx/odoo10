@@ -2,7 +2,7 @@
 <!-- formulario de formulario de plan contable -->
 <odoo>                      
     <record id="report_custom.wizard_jerarquia" model="ir.ui.view">
-        <field name="name">Plan contable</field>
+        <field name="name">Plan contable</field>  
         <field name="model">report_custom.wizard_account_report_jerarquia</field>
         <field name="arch" type="xml">
             <form string="Opciones de reporte">

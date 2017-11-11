@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from odoo import fields, models, _
+from odoo import fields, models
 
 
 class account_report_libro_diario(models.TransientModel):

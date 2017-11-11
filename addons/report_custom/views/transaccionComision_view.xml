@@ -1,0 +1,54 @@
+<odoo>
+  <data>
+
+    <!-- formulario de la vista -->
+    <record model="ir.ui.view" id="report_custom.transaccion_comision_form">
+      <field name="name">report_custom.transaccioncomision.form</field>
+      <field name="model">report_custom.transaccioncomision</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group colspan="2" col="2">
+              <field name="nro_sorteo"/>
+              <field name="fecha"/>
+              <field name="monto_total"/>
+              <field name="descripcion"/>
+            </group>
+            <field name="trans_comision_ids"/>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!-- Vista lista de transacciones con comisiones -->
+
+    <record model="ir.ui.view" id="report_custom.list_transaccioncomision_tree">
+      <field name="name">report_custom.transaccioncomision.tree</field>
+      <field name="model">report_custom.transaccioncomision</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="nro_sorteo"/>
+          <field name="fecha"/>
+          <field name="monto_total"/>
+          <field name="descripcion"/>
+          <field name="trans_comision_ids">
+            <tree string="Detalle de Comisiones">
+              <field name="sistema_trabajo_id"/>
+              <field name="monto"/>
+              <field name="transaccioncomision_id"/>
+            </tree>
+          </field>
+        </tree>
+      </field>
+    </record>
+
+    <!-- ventana que se muestra para el modelo -->
+    
+    <record model="ir.actions.act_window" id="report_custom.transaccioncomision_action_window">
+      <field name="name">Transacciones de comisiones</field>
+      <field name="res_model">report_custom.transaccioncomision</field>
+      <field name="view_mode">tree,form</field>
+    </record>    
+  
+  </data>
+</odoo>
