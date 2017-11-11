@@ -72,16 +72,16 @@ class TransaccionComision(models.Model):
         
         # primero creamos los detalles
         account_move_lines = []
+        ref_encabezado = "NRO SORTEO : " + nro_sorteo + " - " + descripcion
         for data in detail_json:
             sistema_trabajo = self._get_sistema_trabajo(data["sistema_trabajo"])
-            account_move_lines.append((0, 0, self._get_move_line(fecha_sorteo, data["comision"], sistema_trabajo.account_id.id, True)))
-            account_move_lines.append((0, 0, self._get_move_line(fecha_sorteo, data["comision"], sistema_trabajo.account_against_id.id, False)))
-                
-
+            account_move_lines.append((0, 0, self._get_move_line(fecha_sorteo, data["comision"], sistema_trabajo.account_id.id, True, ref_encabezado)))
+            account_move_lines.append((0, 0, self._get_move_line(fecha_sorteo, data["comision"], sistema_trabajo.account_against_id.id, False, ref_encabezado)))
+                        
         account_move = {
             "name" : "/", # al ser draf todavia no tiene nombre
             "state" : "draft", # Quiere decir que el comprobante falta consolidar
-            "ref" : "NRO SORTEO : " + nro_sorteo + " - " + descripcion, # referencia
+            "ref" : ref_encabezado, # referencia
             "company_id" : self.env.user.company_id.id, # es id de la compañia
             "journal_id" : self._getConfigTransDiario(), # id diario  nesecitamos obtenerlo
             "currency_id" : self._getConfigTransMoneda(), # es el id de la moneda
@@ -99,7 +99,7 @@ class TransaccionComision(models.Model):
         return transaccion.id
 
 
-    def _get_move_line(self, fecha_sorteo, comision, account_id, is_debito):
+    def _get_move_line(self, fecha_sorteo, comision, account_id, is_debito, ref_encabezado):
         """Devuelve un diccionario con el detalle del comprobante
 
         Parametros:
@@ -125,14 +125,14 @@ class TransaccionComision(models.Model):
             "credit_cash_basis" : 0 if is_debito else comision, # lo mismo que el credito (CERO si ya esta en el debito)
             "amount_residual_currency" : 0,# ???? no se como se calcula
             "debit" : comision if is_debito else 0, # debito (ej: digamos q es una cuenta que va al debito)
-            #"ref" : "", # es la referencia del account.move.line (lo dejaremos vacio)
+            "ref" : "", # es la referencia del account.move.line (lo dejaremos vacio)
             "account_id" : account_id, # id de la cuenta contable
             "debit_cash_basis" : comision if is_debito else 0, # igual al debito (es decir comision)
             "reconciled" : False, # por defecto falso
             "tax_exigible" : True, # por defecto true
             "balance_cash_basis" : comision if is_debito else (comision * -1), # si es credito va como negativo : debito va como positivo
             "date" : fecha_sorteo, # es la fecha del comprobante contable
-            # "move_id" : -1, # id del encabezado account.move (no se ingresa ya q se va generar automaticamente)
+            #"move_id" : -1, # id del encabezado account.move (no se ingresa ya q se va generar automaticamente)
             "product_id" : False, # por defecto vacio
             "payment_id" : False, # por defecto vacio
             "company_currency_id" : self.env.user.company_id.currency_id.id, # company_id.currency_id idcurrency de res.company es la moneda del documento
@@ -151,6 +151,7 @@ class TransaccionComision(models.Model):
     def _getConfigTransDiario(self):
         """
             metodo que retorna el id del diario de transaccion
+            para la creacion del comprobante contable
         """
         conftrans = self.env['report_custom.conftransaccion']
         conftrans1 = conftrans.search([("estado", "=", "activo")], limit=1)
@@ -159,7 +160,8 @@ class TransaccionComision(models.Model):
 
     def _getConfigTransMoneda(self):
         """
-            metodo que retorna el id de la moneda
+            metodo que retorna el id de la moneda en la 
+            que se esta realizando las transacciones del sistema
         """
         conftrans = self.env['report_custom.conftransaccion']
         conftrans1 = conftrans.search([("estado", "=", "activo")], limit=1)
@@ -169,6 +171,7 @@ class TransaccionComision(models.Model):
     def _getConfigPartner(self):
         """
             Metodo que retorna el id de la empresa de cual es el comprobante
+
         """
         conftrans = self.env['report_custom.conftransaccion']
         conftrans1 = conftrans.search([("estado", "=", "activo")], limit=1)
@@ -177,7 +180,10 @@ class TransaccionComision(models.Model):
 
     def _getTypeAccount(self, account_id):
         """
-            Metodo que devuelve el tipo de cuenta
+            Metodo que devuelve el tipo de cuenta contable
+
+            Parametros:
+            account_id --- Identificador primario de la cuenta contable
         """
         account = self.env["account.account"]
         account1 = account.search([("id" , "=", account_id)], limit=1)

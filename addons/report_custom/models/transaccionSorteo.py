@@ -25,17 +25,6 @@ class TransaccionSorteo(models.Model):
     #def createtransaccion(self, fecha_cierre, venta_efect, comision, juego, sorteo, direct_dpto, fecha_sorteo, glosa, concepto, pais, departamento):
     def createtransaccion(self, fecha_cierre, venta_efect, comision, juego_id, juego, sorteo_id, sorteo, direct_dpto, fecha_sorteo, glosa, concepto, pais, departamento):
         transaccion = self.env['report_custom.transaccionsorteo']
-        # self.fecha_cierre = fecha_cierre
-        # self.venta_efect = venta_efect
-        # self.comision = comision
-        # self.juego = juego
-        # self.sorteo = sorteo
-        # self.direct_dpto = direct_dpto
-        # self.fecha_sorteo = fecha_sorteo
-        # self.glosa = glosa
-        # self.concepto = concepto
-        # self.pais = pais
-        # self.departamento = departamento
         idTransaccion = transaccion.create({
                                             "fecha_cierre" : fecha_cierre,
                                             "venta_efect" : venta_efect,
