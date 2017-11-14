@@ -14,4 +14,3 @@ class TransaccionComisionDet(models.Model):
     sistema_trabajo_id = fields.Many2one('report_custom.sistematrabajo', string="Sistema de trabajo")
     monto = fields.Float(string="Monto de comision", default=0)
     transaccioncomision_id = fields.Many2one(comodel_name='report_custom.transaccioncomision', string="Transaccion Comision")
-    

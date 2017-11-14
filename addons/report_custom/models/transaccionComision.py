@@ -1,8 +1,12 @@
 # -*- coding: utf-8 -*-
-
+from odoo.exceptions import ValidationError
 from odoo import api, fields, models
 import json
 import logging
+from Constantes.ResponseJson import ResponseJson
+from Constantes.Constantes import Constantes
+from Excepciones.ModelError import ModelError
+
 _logger = logging.getLogger(__name__)
 
 class TransaccionComision(models.Model):
@@ -23,6 +27,16 @@ class TransaccionComision(models.Model):
     def update_transaccion_comision(self, nro_sorteo, fecha_sorteo, monto_total, descripcion, detail):
         """ 
             Metodo que crea la transaccion de las comisiones
+            que nos llega desde el sistema web comercial
+
+            Parametros:
+
+            nro_sorteo --- Es el numero de sorteo al que pertenecen las comisiones
+            fecha_sorteo --- Es la fecha que se ejecuto el sorteo que sera la fecha del comprobante contable
+            monto_total --- Es el monto total de las comisiones
+            descripcion --- Es una descripcion sobre el tema del comprobante
+            detail_json --- son las comisiones en detalle de acuerdo a los roles de trabajo
+
         """
     	json_acceptable_string = detail.replace("'", "\"")
     	detail_json = json.loads(json_acceptable_string)
@@ -43,15 +57,20 @@ class TransaccionComision(models.Model):
 			"monto_total": monto_total,
 			"descripcion": descripcion,
 			"trans_comision_ids": comision_detail
-		}
-        #transaccion = self.create(comision)
-        #if(len(transaccion) > 0):
+		}        
+        try:
 
-        id = self._createComprobante(nro_sorteo, fecha_sorteo, monto_total, descripcion, detail_json)
-        return str(id)
-        
-        #return transaccion.id
-        #return json.dumps(comision)
+            response = self._createComprobante(nro_sorteo, fecha_sorteo, monto_total, descripcion, detail_json)
+            if(response.error == Constantes.ERROR_OK):
+                transaccion = self.create(comision)
+            else:
+                raise ModelError(Constantes.ERROR_FAIL, response.message + " : llegue ayu1 1")
+
+            message = "Sistema de trabajo guardado correctamente"            
+            return json.dumps((ResponseJson(response.error, response.message, response.status, response.values)).__dict__)
+        except ModelError as e:
+            _logger.info(":ODOO: " + e.message)
+            return json.dumps((ResponseJson(e.expresion, e.message, "ERROR", {})).__dict__)
 
     def _get_sistema_trabajo(self, sistema_trabajo):
         """
@@ -93,11 +112,22 @@ class TransaccionComision(models.Model):
             "statement_line_id" : False, # Línea de estado de cuenta bancaria reconciliada con esta entrada
             "line_ids": account_move_lines
         }
-        #_logger.info(json.dumps(account_move))
+    
         _logger.info(json.dumps(account_move))
-        transaccion = comprobante.create(account_move)
-        return transaccion.id
+        transaccion = comprobante.create(account_move)    
 
+        try:                        
+            if(len(transaccion) <= 0):                
+                return ResponseJson(Constantes.ERROR_FAIL, "No se pudo ejecutar transaccion", "ERROR", {})
+            else:
+                return ResponseJson(Constantes.ERROR_OK, "Transaccion ejecutada correctamente", "OK", {"id":transaccion.id})
+            _logger.info("ODOO:: HA OCURRIDO UN ERROR X2")
+        except ValidationError as ex:
+            _logger.info("ODOO:: ERROR DE VALIDACION" + ex.message)
+            return ResponseJson(Constantes.ERROR_FAIL, ex.message, "ERROR", {})
+        except Exception as e:            
+            _logger.info("ODOO:: HA OCURRIDO UN ERROR" + e.message)
+            return ResponseJson(Constantes.ERROR_FAIL, e.message, "ERROR", {})
 
     def _get_move_line(self, fecha_sorteo, comision, account_id, is_debito, ref_encabezado):
         """Devuelve un diccionario con el detalle del comprobante
@@ -125,7 +155,7 @@ class TransaccionComision(models.Model):
             "credit_cash_basis" : 0 if is_debito else comision, # lo mismo que el credito (CERO si ya esta en el debito)
             "amount_residual_currency" : 0,# ???? no se como se calcula
             "debit" : comision if is_debito else 0, # debito (ej: digamos q es una cuenta que va al debito)
-            "ref" : "", # es la referencia del account.move.line (lo dejaremos vacio)
+            "ref" : ref_encabezado, # es la referencia del account.move.line (lo dejaremos vacio)
             "account_id" : account_id, # id de la cuenta contable
             "debit_cash_basis" : comision if is_debito else 0, # igual al debito (es decir comision)
             "reconciled" : False, # por defecto falso
@@ -136,7 +166,7 @@ class TransaccionComision(models.Model):
             "product_id" : False, # por defecto vacio
             "payment_id" : False, # por defecto vacio
             "company_currency_id" : self.env.user.company_id.currency_id.id, # company_id.currency_id idcurrency de res.company es la moneda del documento
-            "name" : "", # glosa del detalle por defecto en vacio la tendre!!
+            "name" : ref_encabezado, # glosa del detalle por defecto en vacio la tendre!!
             "invoice_id" : False, # factura :: vacio por defecto
             "tax_line_id" : False, # impuesto :: vacio por defecto
             "credit" : 0 if is_debito else comision, # si ya esta el debito
@@ -188,4 +218,4 @@ class TransaccionComision(models.Model):
         account = self.env["account.account"]
         account1 = account.search([("id" , "=", account_id)], limit=1)
         print(" id type de cuenta" + str(account1.user_type_id))
-        return account1.user_type_id.id
+        return account1.user_type_id.id        
