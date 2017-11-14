@@ -64,12 +64,12 @@ class TransaccionComision(models.Model):
             if(response.error == Constantes.ERROR_OK):
                 transaccion = self.create(comision)
             else:
-                raise ModelError(Constantes.ERROR_FAIL, response.message + " : llegue ayu1 1")
+                raise ModelError(Constantes.ERROR_VALIDACION, response.message)
 
             message = "Sistema de trabajo guardado correctamente"            
             return json.dumps((ResponseJson(response.error, response.message, response.status, response.values)).__dict__)
         except ModelError as e:
-            _logger.info(":ODOO: " + e.message)
+            _logger.error(":ODOO: " + e.message)
             return json.dumps((ResponseJson(e.expresion, e.message, "ERROR", {})).__dict__)
 
     def _get_sistema_trabajo(self, sistema_trabajo):
@@ -94,9 +94,12 @@ class TransaccionComision(models.Model):
         ref_encabezado = "NRO SORTEO : " + nro_sorteo + " - " + descripcion
         for data in detail_json:
             sistema_trabajo = self._get_sistema_trabajo(data["sistema_trabajo"])
-            account_move_lines.append((0, 0, self._get_move_line(fecha_sorteo, data["comision"], sistema_trabajo.account_id.id, True, ref_encabezado)))
-            account_move_lines.append((0, 0, self._get_move_line(fecha_sorteo, data["comision"], sistema_trabajo.account_against_id.id, False, ref_encabezado)))
-                        
+            if (not sistema_trabajo.account_id) or (not sistema_trabajo.account_against_id):
+                return ResponseJson(Constantes.ERROR_FAIL, "Sistema de trabajo : " + sistema_trabajo.descripcion + " no tiene cuenta contable. (Consulte con su contador)", "ERROR", {})
+            else:
+                account_move_lines.append((0, 0, self._get_move_line(fecha_sorteo, data["comision"], sistema_trabajo.account_id.id, True, ref_encabezado)))
+                account_move_lines.append((0, 0, self._get_move_line(fecha_sorteo, data["comision"], sistema_trabajo.account_against_id.id, False, ref_encabezado)))
+
         account_move = {
             "name" : "/", # al ser draf todavia no tiene nombre
             "state" : "draft", # Quiere decir que el comprobante falta consolidar
