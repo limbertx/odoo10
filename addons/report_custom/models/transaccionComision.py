@@ -45,11 +45,15 @@ class TransaccionComision(models.Model):
     	comision_detail = []
     	for data in detail_json:
             #_logger.info("ODOO : " + str(self.get_sistema_trabajo_id(data["sistema_trabajo"])))
-            comision_detail.append((0, 0, 
-                {
-                    "sistema_trabajo_id": self._get_sistema_trabajo(data["sistema_trabajo"]).id,
-                    "monto": data["comision"]
-                }))
+            sistema = self._get_sistema_trabajo(data["sistema_trabajo"])
+            if not sistema:
+                return json.dumps((ResponseJson(Constantes.ERROR_VALIDACION, "No se encuentra sistema de trabajo : " + data["sistema_trabajo"], "ERROR", {})).__dict__)
+            else:
+                comision_detail.append((0, 0, 
+                    {
+                        "sistema_trabajo_id": sistema.id,
+                        "monto": data["comision"]
+                    }))
 
         comision = {
 			"nro_sorteo": nro_sorteo,
