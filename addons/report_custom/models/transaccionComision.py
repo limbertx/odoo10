@@ -95,7 +95,7 @@ class TransaccionComision(models.Model):
         
         # primero creamos los detalles
         account_move_lines = []
-        ref_encabezado = "NRO SORTEO : " + nro_sorteo + " - " + descripcion
+        ref_encabezado = "NRO SORTEO : " + str(nro_sorteo) + " - " + descripcion
         for data in detail_json:
             sistema_trabajo = self._get_sistema_trabajo(data["sistema_trabajo"])
             if (not sistema_trabajo.account_id) or (not sistema_trabajo.account_against_id):
