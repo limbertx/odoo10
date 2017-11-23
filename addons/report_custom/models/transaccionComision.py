@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from odoo.exceptions import ValidationError
 from odoo import api, fields, models
+import time
 import json
 import logging
 from Constantes.ResponseJson import ResponseJson
@@ -23,6 +24,44 @@ class TransaccionComision(models.Model):
     descripcion = fields.Char(string="Descripcion de Sorteo y Comision")
     trans_comision_ids = fields.One2many(comodel_name="report_custom.transaccioncomisiondet", inverse_name="transaccioncomision_id", string="Detalle de comision")
 
+    def __is_numeric(self, value):
+        """
+        Metodo que valida el valor de entrada es un numerico
+        """
+        try:
+            v = float(value)
+            return True
+        except:
+            return False
+    
+    def __validacion_transaccion(self, nro_sorteo, fecha_sorteo, monto_total, descripcion):
+        """
+        Metodo que realiza la validacion de los datos de entrada de la transaccion
+        """
+        msg = ""
+        try:
+            nro = float(nro_sorteo)
+        except:
+            msg += "Es necesario un numero de sorteo valido!"
+
+        try:
+            t = float(monto_total)
+        except:
+            msg += "Es necesario monto total!"
+
+        try:
+            time.strptime(fecha_sorteo, "%Y-%m-%d") # formato de fecha 2017-09-17
+        except:
+            msg += "Formato de fecha necesario [yyyy-mm-dd]"
+
+        if(descripcion is None):
+            msg += "Descripcion es necesaria"
+        else:
+            if(len(descripcion)<=0):
+                msg += "Descripcion es necesaria"
+
+        return msg
+
     @api.model
     def update_transaccion_comision(self, nro_sorteo, fecha_sorteo, monto_total, descripcion, detail):
         """ 
@@ -38,22 +77,38 @@ class TransaccionComision(models.Model):
             detail_json --- son las comisiones en detalle de acuerdo a los roles de trabajo
 
         """
+        msg = self.__validacion_transaccion(nro_sorteo, fecha_sorteo, monto_total, descripcion)
+        if(len(msg) > 0):
+            return json.dumps((ResponseJson(Constantes.ERROR_VALIDACION, msg, "ERROR", {})).__dict__)
+
+
     	json_acceptable_string = detail.replace("'", "\"")
     	detail_json = json.loads(json_acceptable_string)
     	# detalle de comision
     	_logger.info("detalle de comision descr")
     	comision_detail = []
+        monto_acumulado = 0
     	for data in detail_json:
             #_logger.info("ODOO : " + str(self.get_sistema_trabajo_id(data["sistema_trabajo"])))
             sistema = self._get_sistema_trabajo(data["sistema_trabajo"])
             if not sistema:
                 return json.dumps((ResponseJson(Constantes.ERROR_VALIDACION, "No se encuentra sistema de trabajo : " + data["sistema_trabajo"], "ERROR", {})).__dict__)
             else:
-                comision_detail.append((0, 0, 
-                    {
-                        "sistema_trabajo_id": sistema.id,
-                        "monto": data["comision"]
-                    }))
+                if(self.__is_numeric(data["comision"])):
+                    if(float(data["comision"]) > 0):
+                        monto_acumulado = monto_acumulado + float(data["comision"])
+                        comision_detail.append((0, 0, 
+                            {
+                                "sistema_trabajo_id": sistema.id,
+                                "monto": data["comision"]
+                            }))
+                    else:
+                        return json.dumps((ResponseJson(Constantes.ERROR_VALIDACION, "Sistema de trabajo : " + data["sistema_trabajo"] + " es necesario comision mayor a CERO !", "ERROR", {})).__dict__)
+                else:
+                    return json.dumps((ResponseJson(Constantes.ERROR_VALIDACION, "Sistema de trabajo : " + data["sistema_trabajo"] + " no tiene comision!", "ERROR", {})).__dict__)
+
+        if((monto_total - monto_acumulado)!= 0):
+            return json.dumps((ResponseJson(Constantes.ERROR_VALIDACION, "Monto total distinto de Suma de comisiones parciales!", "ERROR", {})).__dict__)
 
         comision = {
 			"nro_sorteo": nro_sorteo,
