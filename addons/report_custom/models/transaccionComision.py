@@ -40,9 +40,18 @@ class TransaccionComision(models.Model):
         """
         msg = ""
         try:
-            nro = float(nro_sorteo)
+            nro = int(nro_sorteo)
+            if(nro <= 0):
+                msg += "Es necesario un numero de sorteo mayor a CERO!"
+                return msg
+
+            if(self._transaccion_nro_sorteo_exists(nro_sorteo)):
+                msg += "Nro de Sorteo duplicado!"
+                return msg
+
         except:
             msg += "Es necesario un numero de sorteo valido!"
+
 
         try:
             t = float(monto_total)
@@ -280,4 +289,13 @@ class TransaccionComision(models.Model):
         account = self.env["account.account"]
         account1 = account.search([("id" , "=", account_id)], limit=1)
         print(" id type de cuenta" + str(account1.user_type_id))
-        return account1.user_type_id.id        
+        return account1.user_type_id.id
+
+    def _transaccion_nro_sorteo_exists(self, nro_sorteo):
+        """
+            Metodo que verifica si ya existe una transaccion con el numero de sorteo
+        """
+        transaccion = self.env['report_custom.transaccioncomision']
+        modelo = transaccion.search([("nro_sorteo", "=", str(nro_sorteo) )], limit=1)
+        return (len(modelo)>0)
+    
